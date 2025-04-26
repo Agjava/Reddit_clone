@@ -1,0 +1,592 @@
+/* src/index.css */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; /* Dark background */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #646cff;
+  --secondary-color: #535bf2;
+  --card-bg: #2f2f2f;       /* Slightly lighter than main bg */
+  --input-bg: #3a3a3a;      /* Background for inputs/textareas */
+  --button-bg: #3a3a3a;     /* Default button background - same as input */
+  --button-hover-border: var(--primary-color);
+  --border-color: #444;     /* Borders */
+  --text-light: #ccc;       /* Lighter text for meta info */
+  --text-darker: #aaa;     /* Even lighter text */
+  --danger-color: #ff4d4d;
+  --warning-color: #ffa726;
+}
+
+/* Apply box-sizing globally */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex; /* Helps center #root if needed */
+  justify-content: center; /* Centers #root horizontally */
+  min-width: 320px;
+  min-height: 100vh;
+  padding: 0; /* Remove default body padding */
+}
+
+#root {
+  max-width: 1280px;
+  width: 100%; /* Ensure it takes available width up to max-width */
+  margin: 0 auto; /* Horizontal centering */
+  padding: 2rem;
+  text-align: center;
+}
+
+/* General Styles */
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: inherit;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--secondary-color);
+}
+
+h1, h2, h3 {
+    margin-bottom: 1em; /* Consistent bottom margin for headers */
+}
+h2 { /* Style for main section titles like "Discover..." */
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg); /* Use variable for default button bg */
+  color: rgba(255, 255, 255, 0.87); /* Ensure text is visible */
+  cursor: pointer;
+  transition: border-color 0.25s, background-color 0.2s;
+  margin: 0.25em 0.5em; /* Adjusted margin for better spacing */
+}
+button:hover {
+  border-color: var(--button-hover-border);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+button:disabled {
+    background-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    border-color: transparent;
+}
+button.primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+button.primary:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+button.danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+button.danger:hover:not(:disabled) {
+    background-color: darken(var(--danger-color), 10%); /* Needs Sass/JS or just define darker color */
+    border-color: var(--danger-color);
+}
+button.warning {
+    background-color: var(--warning-color);
+    color: #1a1a1a; /* Dark text on warning */
+}
+button.warning:hover:not(:disabled) {
+     background-color: darken(var(--warning-color), 10%); /* Needs Sass/JS or just define darker color */
+     border-color: var(--warning-color);
+}
+
+
+/* Navigation */
+nav {
+  background-color: var(--card-bg); /* Use card background for nav */
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-color);
+}
+
+nav h1 {
+  margin: 0; /* Remove default margin */
+  font-size: 1.8em;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+nav h1 a {
+    color: inherit; /* Make logo link inherit nav h1 color */
+    text-decoration: none;
+}
+
+nav .nav-links a {
+  margin-left: 1.5rem;
+  font-size: 1.1em;
+}
+
+/* Forms (Create/Edit) */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: var(--text-light); /* Lighter label text */
+}
+
+form input[type="text"],
+form input[type="url"],
+form textarea {
+  width: 100%; /* Use full width */
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-light);
+  font-size: 1em;
+}
+form input[type="text"]:focus,
+form input[type="url"]:focus,
+form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.5); /* Subtle focus ring */
+}
+
+
+form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+form button {
+    align-self: flex-start; /* Align button to the left */
+    margin-top: 1rem;
+}
+
+
+/* Feed Controls (Search/Sort) */
+.feed-controls {
+  margin-bottom: 2.5rem; /* More space below controls */
+  display: flex;
+  gap: 1rem; /* Gap between elements */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+.feed-controls form { /* Style the search form specifically */
+    display: flex;
+    flex-direction: row; /* Align input and button horizontally */
+    align-items: center;
+    background: none; /* Override default form style */
+    padding: 0;
+    border: none;
+    margin: 0; /* Remove form margins */
+    gap: 0.5rem; /* Gap between input and button */
+}
+
+.feed-controls input[type="text"] {
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--text-light);
+  min-width: 200px; /* Give search input a decent minimum width */
+}
+.feed-controls input[type="text"]:focus {
+     outline: none;
+     border-color: var(--primary-color);
+}
+
+.feed-controls .sort-options { /* Wrap sort options in a div if needed for styling */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Gap between "Sort by:" text and buttons */
+}
+.feed-controls .sort-options span {
+  margin-right: 0.5rem;
+  color: var(--text-light);
+}
+
+
+/* Post Feed Grid */
+.post-feed {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  margin-top: 2rem; /* Add space above the post grid */
+}
+
+/* Card (Post on Home Feed) */
+.card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: left;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push content/meta apart if needed */
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+  font-size: 1.4em;
+  line-height: 1.3;
+}
+
+.card-meta {
+  font-size: 0.9em;
+  color: var(--text-darker); /* Use darker text for meta */
+  margin-bottom: 0; /* Remove bottom margin if link wraps everything */
+  margin-top: 0.5rem; /* Add space above meta */
+}
+
+.card-link {
+   display: block; /* Make the link take up the card space */
+   text-decoration: none;
+   color: inherit;
+   height: 100%; /* Ensure link covers card */
+}
+
+
+/* Post Detail Page */
+.post-detail-container {
+    max-width: 800px; /* Limit width of detail page */
+    margin: 2rem auto; /* Center detail container */
+}
+
+.post-detail {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.post-detail h1 {
+  color: var(--primary-color);
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2em;
+  line-height: 1.3;
+}
+
+.post-detail img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color); /* Add subtle border to image */
+}
+
+.post-meta {
+  font-size: 0.95em;
+  color: var(--text-light);
+  margin-bottom: 1.5rem; /* Space below meta info */
+}
+
+.post-detail p { /* Style main content paragraph */
+    line-height: 1.7;
+    color: var(--text-light);
+    font-size: 1.05em;
+}
+
+.post-actions {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1.5rem; /* More padding above actions */
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap; /* Allow actions to wrap */
+}
+
+.upvote-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.upvote-section span {
+    font-weight: 500;
+    color: var(--text-light);
+}
+
+
+/* Comments Section */
+.comments-section {
+  margin-top: 3rem; /* More space above comments */
+  text-align: left;
+  background-color: var(--card-bg); /* Contain comments in a card */
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.comments-section h3 {
+   border-bottom: 1px solid var(--border-color);
+   padding-bottom: 0.75rem;
+   margin-bottom: 1.5rem;
+   font-size: 1.5em;
+   color: var(--text-light);
+}
+
+.comment-form { /* Style comment form specifically */
+    background: none;
+    padding: 0;
+    border: none;
+    margin-bottom: 2rem;
+    max-width: none; /* Override general form max-width */
+}
+.comment-form button {
+    margin-top: 0.5rem; /* Less margin for comment submit */
+}
+
+.comments-list {
+    margin-top: 2rem; /* Space above list */
+}
+
+.comment {
+  background-color: var(--input-bg); /* Use input bg for comments */
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  border: 1px solid #4f4f4f;
+}
+.comment p {
+  margin: 0.5rem 0;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.comment-meta {
+    font-size: 0.85em;
+    color: var(--text-darker);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border-color); /* Separator */
+}
+.comment-meta span:first-child { /* Author */
+    font-weight: 500;
+}
+
+/* Utility */
+.loading, .error, .no-posts {
+    font-size: 1.1em;
+    margin-top: 2rem;
+    color: var(--text-light);
+}
+.error {
+    color: var(--danger-color);
+    background-color: rgba(255, 77, 77, 0.1); /* Slight bg for errors */
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--danger-color);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.no-posts {
+    color: var(--text-darker); /* Make "no posts" message less prominent */
+}
+
+/* Light Theme Override */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #f0f0f0; /* Lighter page background */
+    --primary-color: #6a5acd; /* SlateBlue */
+    --secondary-color: #483d8b; /* DarkSlateBlue */
+    --card-bg: #ffffff;       /* White cards */
+    --input-bg: #fdfdfd;
+    --button-bg: #f0f0f0;     /* Button bg matches page bg */
+    --button-hover-border: var(--primary-color);
+    --border-color: #dcdcdc;     /* Light gray borders */
+    --text-light: #555;       /* Darker gray text */
+    --text-darker: #777;
+  }
+
+  body {
+     color: #213547; /* Ensure body text is dark */
+  }
+
+  button {
+      background-color: #e9e9e9; /* Slightly darker buttons */
+      color: #333;
+      border: 1px solid #ccc;
+  }
+  button:hover:not(:disabled) {
+      background-color: #ddd;
+      border-color: #bbb;
+  }
+    button:disabled {
+      background-color: #e0e0e0;
+      color: #aaa;
+      border-color: #ccc;
+  }
+  button.primary {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+  }
+    button.primary:hover:not(:disabled) {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  button.warning {
+      background-color: var(--warning-color);
+      color: #333; /* Dark text on warning */
+      border-color: var(--warning-color);
+  }
+
+
+  nav {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Subtle shadow for nav */
+  }
+
+  form {
+     background-color: var(--card-bg);
+     border-color: var(--border-color);
+     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  form label {
+      color: #444;
+  }
+  form input[type="text"],
+  form input[type="url"],
+  form textarea {
+    background-color: var(--input-bg);
+    color: #213547;
+    border: 1px solid #ccc;
+  }
+  form input[type="text"]:focus,
+  form input[type="url"]:focus,
+  form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(106, 90, 205, 0.3); /* Focus ring for light mode */
+  }
+
+  .feed-controls input[type="text"] {
+    background-color: var(--card-bg);
+    color: #213547;
+    border: 1px solid #ccc;
+  }
+  .feed-controls .sort-options span {
+      color: #444;
+  }
+
+   .card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+   }
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card-meta {
+        color: var(--text-darker);
+    }
+
+
+  .post-detail {
+    background-color: var(--card-bg);
+     border-color: var(--border-color);
+     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+   .post-detail p {
+       color: #333;
+   }
+   .post-meta {
+       color: var(--text-light);
+   }
+  .post-actions {
+      border-top-color: var(--border-color);
+  }
+  .upvote-section span {
+      color: var(--text-light);
+  }
+
+  .comments-section {
+       background-color: #f9f9f9; /* Slightly off-white for comments section */
+       border-color: var(--border-color);
+       box-shadow: none; /* Remove shadow from comment section */
+  }
+  .comments-section h3 {
+       border-bottom-color: var(--border-color);
+       color: #333;
+   }
+
+   .comment {
+     background-color: #fff; /* White comment background */
+     border-color: #e0e0e0;
+   }
+   .comment p {
+       color: #444;
+   }
+   .comment-meta {
+       color: #666;
+       border-top-color: #eee;
+   }
+
+    .loading, .error, .no-posts {
+        color: #555;
+    }
+    .error {
+        color: #d32f2f; /* Material Design error color */
+        background-color: #ffebee; /* Light red background */
+        border: 1px solid #ef9a9a; /* Lighter red border */
+    }
+    .no-posts {
+        color: #777;
+    }
+
+}
