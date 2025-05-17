@@ -61,9 +61,6 @@ The following **optional** features are implemented:
   - Users can upload images directly from their local machine as an image file
 - [x] Web app displays a loading animation whenever data is being fetched (Implemented with basic "Loading..." text messages)
 
-The following **additional** features are implemented:
-
-* [ ] List anything else that you added to improve the site's functionality! *(You can add things here if you extended it, e.g., "Added confirmation dialogs before deleting posts.")*
 
 ## Video Walkthrough
 
